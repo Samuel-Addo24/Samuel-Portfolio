@@ -1,4 +1,4 @@
-##### hello, welcome to my portfolio
+#### Hello, welcome to my portfolio
 
 In my portfolio, I aim to showcase my skills in data analysis through my projects, each created to highlight my expertise with real-world datasets. With a keen focus on data visualisation, SQL, Google Sheets, Tableau, and programming. I present a comprehensive demonstration of my analytical capabilities.
 
