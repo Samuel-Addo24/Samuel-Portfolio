@@ -1,0 +1,5 @@
+#In this project i will be answering 10 questions from the data set
+#Lets start by slecting the dataset
+
+#select *
+From plucky-environs-417511.Banking.Banking_Customer_Segmentation
