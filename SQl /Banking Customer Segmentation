@@ -3,3 +3,29 @@
 
 select *
 From plucky-environs-417511.Banking.Banking_Customer_Segmentation
+
+#1 what is the average amount in customers balance
+
+select avg(Custaccountbalance)
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+
+#2 how many woaman in the dataset are from each country
+
+select count(female) as Num_Of_Females ,
+location
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+group by Custlocation
+order by count(female) desc;
+
+#3 What time saw the most trancation made
+
+select count(TransactionTime) as Time_of_Transaction
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+order by Time_of_transaction desc;
+
+#4 how many transcations were made in mumbai
+
+select count( CustLocation ) as Num_in_Mumbai
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+where CustLocation = 'MUMBAI'
+
