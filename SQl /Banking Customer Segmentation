@@ -1,31 +1,35 @@
-#In this project i will be answering 4 questions from the data set
+#In this project i will be answering 5 questions from the data set
 #Lets start by slecting the dataset
 
 select *
 From plucky-environs-417511.Banking.Banking_Customer_Segmentation
 
-#1 what is the average amount in customers balance
+#1 what is the average amount in customers balance?
 
 select avg(Custaccountbalance)
 from plucky-environs-417511.Banking.Banking_Customer_Segmentation
 
 #2 how many woaman in the dataset are from each country
 
-select count(female) as Num_Of_Females ,
-location
+select custlocation, Custgender, count(*) as num_of_females
 from plucky-environs-417511.Banking.Banking_Customer_Segmentation
-group by Custlocation
-order by count(female) desc;
+where Custgender like "%Female%"
+group by Custlocation order by num_of_females desc;
 
-#3 What time saw the most trancation made
+#3 What time saw the most trancation made?
 
 select count(TransactionTime) as Time_of_Transaction
 from plucky-environs-417511.Banking.Banking_Customer_Segmentation
 order by Time_of_transaction desc;
 
-#4 how many transcations were made in mumbai
+#4 how many transcations were made in mumbai?
 
 select count( CustLocation ) as Num_in_Mumbai
 from plucky-environs-417511.Banking.Banking_Customer_Segmentation
 where CustLocation = 'MUMBAI'
 
+#5 Which area had the most balance?
+
+select CustAccountBalance, TransactionID, Custlocation
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+group by TransactionID, Custlocation,CustAccountBalance order by CustAccountBalance desc
