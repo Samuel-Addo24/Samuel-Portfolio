@@ -33,3 +33,59 @@ where CustLocation = 'MUMBAI'
 select CustAccountBalance, TransactionID, Custlocation
 from plucky-environs-417511.Banking.Banking_Customer_Segmentation
 group by TransactionID, Custlocation,CustAccountBalance order by CustAccountBalance desc
+
+#6 How many transactions occurred each day, and what was the average transaction amount per day?
+
+SELECT TransactionDate,
+COUNT(*) AS TotalTransactions,
+AVG(TransactionAmount__INR_) AS AvgTransactionAmount
+from plucky-environs-417511.Banking.Banking_Customer_Segmentation
+GROUP BY TransactionDate;
+
+#7 What is the total transaction amount made by each customer?
+
+select
+CustomerID,
+SUM(TransactionAmount__INR_) AS TotalTransactionAmount
+FROM 
+plucky-environs-417511.Banking.Banking_Customer_Segmentation
+GROUP BY 
+CustomerID;
+
+#8 How many transactions were made by customers in each age group (based on CustomerDOB)?
+
+SELECT 
+CASE
+WHEN CustomerDOB (YEAR, CustomerDOB, CURDATE()) BETWEEN 0 AND 18 THEN '0-18'
+WHEN CustomerDOB (YEAR, CustomerDOB, CURDATE()) BETWEEN 19 AND 30 THEN '19-30'
+WHEN CustomerDOB (YEAR, CustomerDOB, CURDATE()) BETWEEN 31 AND 40 THEN '31-40'
+WHEN CustomerDOB (YEAR, CustomerDOB, CURDATE()) BETWEEN 41 AND 50 THEN '41-50'
+ELSE 'Above 50'
+END AS AgeGroup,
+COUNT(TransactionID) AS NumberOfTransactions
+FROM 
+plucky-environs-417511.Banking.Banking_Customer_Segmentation
+GROUP BY 
+AgeGroup;
+
+#9 How many transactions were made by each customer, and what was their average transaction amount?
+
+SELECT 
+CustomerID,
+COUNT(TransactionID) AS TotalTransactions,
+AVG(TransactionAmount) AS AvgTransactionAmount
+FROM plucky-environs-417511.Banking.Banking_Customer_Segmentation
+GROUP BY 
+CustomerID;
+
+#10 Which customers have the highest and lowest account balances?
+
+SELECT 
+CustomerID,
+CustAccountBalance
+FROM 
+plucky-environs-417511.Banking.Banking_Customer_Segmentation
+WHERE 
+CustAccountBalance = (SELECT MAX(CustAccountBalance) FROM plucky-environs-417511.Banking.Banking_Customer_Segmentation)
+OR
+CustAccountBalance = (SELECT MIN(CustAccountBalance) FROM plucky-environs-417511.Banking.Banking_Customer_Segmentation);
